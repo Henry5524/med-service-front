@@ -25,13 +25,16 @@ export default function HospitalCard() {
           </div>
 
           <div className="flex flex-col w-fit gap-2 ">
-            <h2 className="text-sm lg:text-xl">
+            <h2 className="text-sm lg:text-xl font-medium">
               КЛИНИКА МЕМОРИАЛ БАХЧЕЛИЭВЛЕР (MEMORIAL BAHÇELIEVLER HOSPITAL)
             </h2>
-            <p className="text-xs lg:text-sm text-gray-600">ТУРЦИЯ, СТАМБУЛ</p>
-            <h4 className="text-xs lg:text-base text-gray-800">
+            <p className="text-xs lg:text-sm text-gray-500 font-light">
+              ТУРЦИЯ, СТАМБУЛ
+            </p>
+            <h4 className="text-xs lg:text-base text-gray-800 font-normal">
               Лечение онкологии, центр трансплантации. Успешность трансплантации
-              почек - 99% , печени — 93,5% . 320 коек, 15...
+              почек - 99% , печени — 93,5% . 320 коек, 15. Лечение онкологии,
+              центр трансплантации...
             </h4>
             {/* <Button
               size="md"
