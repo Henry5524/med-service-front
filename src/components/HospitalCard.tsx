@@ -1,6 +1,7 @@
 import React from "react";
-import { Card, CardBody, Image, Button, Slider } from "@nextui-org/react";
+import { Card, CardBody, Image } from "@nextui-org/react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function HospitalCard() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function HospitalCard() {
     >
       <CardBody>
         <div className="flex gap-4 flex-col items-center justify-center xs:flex-row ">
-          <div className="relative">
+          <div className="flex flex-col w-fit gap-4">
             <Image
               alt="Album cover"
               className="object-cover"
@@ -25,7 +26,7 @@ export default function HospitalCard() {
           </div>
 
           <div className="flex flex-col w-fit gap-2 ">
-            <h2 className="text-sm lg:text-xl font-medium">
+            <h2 className="text-sm lg:text-xl font-medium text-gray-900">
               КЛИНИКА МЕМОРИАЛ БАХЧЕЛИЭВЛЕР (MEMORIAL BAHÇELIEVLER HOSPITAL)
             </h2>
             <p className="text-xs lg:text-sm text-gray-500 font-light">
@@ -33,17 +34,11 @@ export default function HospitalCard() {
             </p>
             <h4 className="text-xs lg:text-base text-gray-800 font-normal">
               Лечение онкологии, центр трансплантации. Успешность трансплантации
-              почек - 99% , печени — 93,5% . 320 коек, 15. Лечение онкологии,
-              центр трансплантации...
+              почек - 99% ,{" "}
+              <Link href={"/home/2"} className="underline">
+                подробнее...
+              </Link>
             </h4>
-            {/* <Button
-              size="md"
-              className="max-w-[210px] m-auto bg-gradient-to-r to-cyan-500 from-blue-500 text-white border-white-500"
-              variant="bordered"
-              onClick={() => router.push(`/home/2`)}
-            >
-              HeartIcon
-            </Button> */}
           </div>
         </div>
       </CardBody>

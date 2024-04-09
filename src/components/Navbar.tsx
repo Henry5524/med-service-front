@@ -28,7 +28,7 @@ export default function Navbar() {
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      maxWidth="xl"
+      maxWidth="lg"
     >
       <NavbarContent className="sm:hidden " justify="start">
         <NavbarMenuToggle

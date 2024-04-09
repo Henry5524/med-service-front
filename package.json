@@ -14,13 +14,15 @@
     "classnames": "^2.5.1",
     "dompurify": "^3.0.11",
     "flowbite-react": "^0.7.8",
+    "formik": "^2.4.5",
     "framer-motion": "^11.0.18",
     "isomorphic-dompurify": "^2.6.0",
     "jsdom": "^24.0.0",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/dompurify": "^3.0.5",
