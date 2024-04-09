@@ -4,3 +4,6 @@ export { FacebookIcon } from "./FacebookIcon";
 export { InstagramIcon } from "./InstagramIcon";
 export { TelegramIcon } from "./TelegramIcon";
 export { TwitterIcon } from "./TwitterIcon";
+export { RocketIcon } from "./RocketIcon";
+export { StethoscopeIcon } from "./StethoscopeIcon";
+export { UsersIcon } from "./UsersIcon";
