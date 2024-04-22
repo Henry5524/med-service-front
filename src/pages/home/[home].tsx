@@ -1,10 +1,16 @@
 import Carousel from "@/components/Carousel";
+import { ClinicsData } from "@/helpers/ClinicsData";
 import { sanitizeHtml } from "@/utils/sanitizer";
 import { Accordion, AccordionItem, Button, Image } from "@nextui-org/react";
+import { useRouter } from "next/router";
 // import { sanitize } from "dompurify";
 // import DOMPurify from "dompurify";
 
 export default function home() {
+  const router = useRouter();
+
+  console.log(router.query.home === "1");
+
   const defaultContent =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
@@ -25,150 +31,158 @@ export default function home() {
 
   return (
     <div>
-      <h1 className="text-black text-4xl font-bold tracking-normal text-left mb-8">
-        МЕДИЦИНСКИЙ ЦЕНТР ANADOLU
-      </h1>
-      <div className="mb-8 lg:flex gap-8">
-        <div className="mb-8">
-          <Carousel />
+      {ClinicsData.filter((item) => item.id === router.query.home).map(
+        (clinic: any) => (
+          <div key={clinic.id}>
+            <h1 className="text-black text-4xl font-bold tracking-normal text-left mb-8">
+              {clinic.name}
+            </h1>
+            <div className="mb-8 lg:flex gap-8">
+              <div className="mb-8">
+                <Carousel />
 
-          <div
-            className="bg-white p-4 md:w-full lg:w-[768px] rounded-xl text-gray-900 drop-shadow-md"
-            dangerouslySetInnerHTML={{ __html: sanitizedData }}
-          />
-        </div>
+                <div
+                  className="bg-white p-4 md:w-full lg:w-[768px] rounded-xl text-gray-900 drop-shadow-md"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(clinic.description),
+                  }}
+                />
+              </div>
 
-        <div className="flex-1 min-w-80">
-          <h4 className="text-xl font-bold tracking-normal text-center mb-4 text-gray-900">
-            МЕТОДЫ ЛЕЧЕНИЯ И ПРОЦЕДУРЫ : MEDICANA
-          </h4>
+              <div className="flex-1 min-w-80">
+                <h4 className="text-xl font-bold tracking-normal text-center mb-4 text-gray-900">
+                  МЕТОДЫ ЛЕЧЕНИЯ И ПРОЦЕДУРЫ : MEDICANA
+                </h4>
 
-          <div className="max-w-96 m-auto">
-            <Accordion variant="splitted" className="text-gray-900">
-              <AccordionItem
-                key="1"
-                aria-label="Accordion 1"
-                title="Accordion 1"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="2"
-                aria-label="Accordion 2"
-                title="Accordion 2"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
+                {/* <div className="max-w-96 m-auto">
+                  <Accordion variant="splitted" className="text-gray-900">
+                    <AccordionItem
+                      key="1"
+                      aria-label="Accordion 1"
+                      title="Accordion 1"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="2"
+                      aria-label="Accordion 2"
+                      title="Accordion 2"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
 
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-              <AccordionItem
-                key="3"
-                aria-label="Accordion 3"
-                title="Accordion 3"
-              >
-                {defaultContent}
-              </AccordionItem>
-            </Accordion>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                    <AccordionItem
+                      key="3"
+                      aria-label="Accordion 3"
+                      title="Accordion 3"
+                    >
+                      {defaultContent}
+                    </AccordionItem>
+                  </Accordion>
+                </div> */}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        ),
+      )}
     </div>
   );
 }
