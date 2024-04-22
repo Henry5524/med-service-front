@@ -16,7 +16,7 @@ export default function App() {
   // useEffect(() => {
   //   const fetchPosts = async () => {
   //     try {
-  //       const response = await axios.get('http://localhost:1337/clinic'); // Change URL accordingly
+  //       const response = await axios.get('http://localhost:1337/api/services'); // Change URL accordingly
   //       setData(response.data);
   //     } catch (error) {
   //       console.error('Error fetching posts:', error);

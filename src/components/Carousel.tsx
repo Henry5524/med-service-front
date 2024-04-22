@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function Carousel() {
   return (
     <ResponsiveCarousel
-      infiniteLoop={true}
+      infiniteLoop
       autoPlay={true}
       showStatus={false}
       showThumbs={false}

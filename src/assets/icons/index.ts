@@ -7,3 +7,4 @@ export { TwitterIcon } from "./TwitterIcon";
 export { RocketIcon } from "./RocketIcon";
 export { StethoscopeIcon } from "./StethoscopeIcon";
 export { UsersIcon } from "./UsersIcon";
+export { LocationIcon } from "./LocationIcon";
