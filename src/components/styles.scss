@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.image-container {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+
+.image {
+  transition: transform 0.3s ease;
+}
+
+.zoomed {
+  transform: scale(1.2);
+}

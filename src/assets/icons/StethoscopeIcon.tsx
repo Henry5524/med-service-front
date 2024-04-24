@@ -14,12 +14,10 @@ export const StethoscopeIcon = () => (
       height="20"
       rx="5"
       stroke="#2B3F6C"
-      stroke-width="1.5"
     />
     <path
       d="M6 13H8L10 16L14 9L16 13H18"
       stroke="#2B3F6C"
-      stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />

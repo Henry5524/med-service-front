@@ -1,16 +1,18 @@
 import React from "react";
-import { Card, CardBody, Image } from "@nextui-org/react";
-import { useRouter } from "next/router";
+import { Card, CardBody } from "@nextui-org/react";
+// import { useRouter } from "next/router";
+import { config } from "../config";
 import { sanitizeHtml } from "@/utils/sanitizer";
 import truncateWithLink from "@/utils/truncateWithLink";
 import { LocationIcon } from "@/assets/icons";
+import { MappedImages } from "@/types/dataTypes";
 
 export interface HospitalCardProps {
-  id: number;
-  name: string;
-  address: string;
+  id?: number;
+  name?: string;
+  address?: string;
   description: string;
-  imgSrc: string;
+  imgSrc: MappedImages[];
 }
 
 export default function HospitalCard({
@@ -27,30 +29,24 @@ export default function HospitalCard({
       shadow="sm"
     >
       <CardBody>
-        <div className="flex gap-4 flex-col items-center justify-center xs:flex-row">
-          <div className="flex flex-col w-fit gap-4">
+        <div className="flex gap-4 flex-col items-center xs:flex-row ">
+          <div className="custom-image-container">
             {imgSrc ? (
-              <Image
-                alt="Album cover"
-                className="object-cover"
-                width={300}
-                height={200}
-                src={imgSrc}
-                isZoomed
+              <img
+                src={`${config.api_url_image}${imgSrc[0].image}`}
+                className="custom-image"
+                alt={`${config.api_url_image}${imgSrc[0].name}`}
               />
             ) : (
-              <Image
-                alt="Album cover"
-                className="object-cover"
-                width={300}
-                height={200}
+              <img
                 src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
-                isZoomed
+                className="custom-image"
+                alt="No image"
               />
             )}
           </div>
 
-          <div className="flex flex-col w-fit gap-2">
+          <div className="flex flex-col gap-2 flex-1">
             <h2 className="text-sm lg:text-xl font-medium text-gray-900">
               {name}
             </h2>
