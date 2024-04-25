@@ -7,14 +7,32 @@ export interface Service {
   top: any;
 }
 
-export interface Image {
-  id: number;
+export interface ImageFormat {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path: string | null;
+  width: number;
+  height: number;
+  size: number;
+  sizeInBytes: number;
+  url: string;
+}
+
+export interface ImageAttributes {
   name: string;
   alternativeText: string | null;
   caption: string | null;
   width: number;
   height: number;
-  formats: any;
+  formats: {
+    thumbnail: ImageFormat;
+    small?: ImageFormat;
+    medium?: ImageFormat;
+    large?: ImageFormat;
+    // Add more formats if needed
+  };
   hash: string;
   ext: string;
   mime: string;
@@ -22,14 +40,18 @@ export interface Image {
   url: string;
   previewUrl: string | null;
   provider: string;
-  provider_metadata: any | null;
+  provider_metadata: any | null; // Update this if you know the structure of provider_metadata
   createdAt: string;
   updatedAt: string;
 }
 
-export interface MappedImages {
-  image: string;
-  name: string;
+export interface ImageData {
+  id: number;
+  attributes: ImageAttributes;
+}
+
+export interface ImageResponse {
+  data: ImageData[];
 }
 
 export interface DataAttributes {
@@ -38,10 +60,11 @@ export interface DataAttributes {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  image: {
-    data: {
-      map(arg0: (image: { attributes: Image; }) => { image: string; name: string; }): any; attributes: Image[]
-    }
-  };
+  image: ImageResponse;
   services: { data: Service[] };
+}
+
+export interface MappedImages {
+  imageUrl: string;
+  name: string;
 }

@@ -17,4 +17,9 @@ export class Api {
         );
     }
 
+    static getClinicById(id: string): Promise<void> {
+        return handleRequest<void>(Api.axios.get(`/clinics/${id}`)
+        );
+    }
+
 }

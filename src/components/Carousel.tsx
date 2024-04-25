@@ -1,12 +1,13 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/icons";
 import { Button, Image } from "@nextui-org/react";
+import { config } from "../config";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function Carousel() {
+export default function Carousel({ images }: any) {
   return (
     <ResponsiveCarousel
-      infiniteLoop
+      infiniteLoop={true}
       autoPlay={true}
       showStatus={false}
       showThumbs={false}
@@ -40,18 +41,16 @@ export default function Carousel() {
         )
       }
     >
-      <Image
-        alt="Album cover"
-        className="object-cover aspect-[3/2]"
-        width={"100%"}
-        src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
-      />
-      <Image
-        alt="Album cover"
-        className="object-cover aspect-[3/2] "
-        width={"100%"}
-        src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg"
-      />
+      {images &&
+        images.map((image: any) => (
+          <Image
+            key={`${image.image}-${image.name}`}
+            alt={`${config.api_url_image}${image.name}`}
+            className="object-cover aspect-[3/2]"
+            width={"100%"}
+            src={`${config.api_url_image}${image.imageUrl}`}
+          />
+        ))}
     </ResponsiveCarousel>
   );
 }

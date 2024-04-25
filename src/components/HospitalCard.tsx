@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, CardBody } from "@nextui-org/react";
-// import { useRouter } from "next/router";
 import { config } from "../config";
 import { sanitizeHtml } from "@/utils/sanitizer";
 import truncateWithLink from "@/utils/truncateWithLink";
@@ -8,8 +7,8 @@ import { LocationIcon } from "@/assets/icons";
 import { MappedImages } from "@/types/dataTypes";
 
 export interface HospitalCardProps {
-  id?: number;
-  name?: string;
+  id: number;
+  name: string;
   address?: string;
   description: string;
   imgSrc: MappedImages[];
@@ -33,7 +32,7 @@ export default function HospitalCard({
           <div className="custom-image-container">
             {imgSrc ? (
               <img
-                src={`${config.api_url_image}${imgSrc[0].image}`}
+                src={`${config.api_url_image}${imgSrc[0].imageUrl}`}
                 className="custom-image"
                 alt={`${config.api_url_image}${imgSrc[0].name}`}
               />
@@ -60,7 +59,7 @@ export default function HospitalCard({
             <h4
               dangerouslySetInnerHTML={{
                 __html: sanitizeHtml(
-                  truncateWithLink(description, 20, `/home/${id}`),
+                  truncateWithLink(description, 20, `/clinics/${id}`),
                 ),
               }}
               className="text-xs lg:text-base text-gray-800 font-normal"
