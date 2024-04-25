@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import HospitalCard from "@/components/HospitalCard";
 import TabFilterBlock from "@/components/TabFilterBlock";
 import { FilterTabsData } from "@/helpers/FilterTabsData";
-// import { ClinicsData } from "@/helpers/ClinicsData";
 import { Api } from "@/services/api";
-import { mapper } from "@/lib/map-clinics";
+import { mapClinics, mapImages } from "@/lib";
 
-export default function Home() {
+export default function Clinics() {
   const [activeId, setActiveId] = useState<string>();
   const [clinicsData, setClinicsData] = useState<any>();
   const [hydrated, setHydrated] = useState<boolean>(false);
@@ -15,17 +14,17 @@ export default function Home() {
     setActiveId(activeItem);
   }
 
-  async function getTickets(): Promise<void> {
+  async function getAllClinics(): Promise<void> {
     const res = await Api.getClinics();
     setClinicsData(res);
   }
 
   useEffect(() => {
-    setHydrated(true);
+    getAllClinics();
   }, []);
 
   useEffect(() => {
-    getTickets();
+    setHydrated(true);
   }, []);
 
   if (!hydrated) return null;
@@ -38,29 +37,22 @@ export default function Home() {
         postsData={FilterTabsData}
         onSelectionChange={handleActiveChange}
       />
-      {/* <div className="flex-[9_1_auto]">
-        {ClinicsData.map((item: any) => (
-          <HospitalCard
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            address={item.address}
-            description={item.description}
-            imgSrc={item.imgSrc}
-          />
-        ))}
-      </div> */}
       <div className="flex-[9_1_auto]">
-        {mapper(clinicsData)?.map((item: any) => (
-          <HospitalCard
-            key={item.id}
-            id={item.id}
-            name={item?.name}
-            address={item?.address}
-            description={item.description}
-            imgSrc={item.image}
-          />
-        ))}
+        {clinicsData &&
+          mapClinics(clinicsData).map((item: any) => {
+            const images = mapImages(item?.image);
+
+            return (
+              <HospitalCard
+                key={item.id}
+                id={item.id}
+                name={item?.name}
+                address={item?.address}
+                description={item.description}
+                imgSrc={images}
+              />
+            );
+          })}
       </div>
     </div>
   );
