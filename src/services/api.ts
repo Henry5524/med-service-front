@@ -22,4 +22,14 @@ export class Api {
         );
     }
 
+    static getServices(): Promise<void> {
+        return handleRequest<void>(Api.axios.get('/services')
+        );
+    }
+
+    static getServiceById(id: string): Promise<void> {
+        return handleRequest<void>(Api.axios.get(`/services/${id}`)
+        );
+    }
+
 }

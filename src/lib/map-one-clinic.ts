@@ -1,4 +1,4 @@
-import { DataAttributes, Service, ImageResponse } from "@/types/dataTypes";
+import { DataAttributes, ImageResponse, ServiceResponse } from "@/types/dataTypes";
 
 interface InputData {
   data: { id: number; attributes: DataAttributes };
@@ -7,15 +7,15 @@ interface InputData {
 interface OutputData {
   name: string;
   description: string;
-  services: Service[];
+  services: ServiceResponse;
   image: ImageResponse;
 }
 
-export const mapOneClinic = (inputData: InputData): OutputData => {
+export const mapOneClinic = (inputData: InputData | any): OutputData => {
   return ({
-    name: inputData?.data.attributes.name,
-    description: inputData?.data.attributes.description,
-    services: inputData?.data.attributes.services.data,
-    image: inputData?.data.attributes.image
+    name: inputData?.data?.attributes.name,
+    description: inputData?.data?.attributes.description,
+    services: inputData?.data?.attributes.services,
+    image: inputData?.data?.attributes.image
   })
 }
