@@ -4,11 +4,18 @@ import TabFilterBlock from "@/components/TabFilterBlock";
 import { FilterTabsData } from "@/helpers/FilterTabsData";
 import { Api } from "@/services/api";
 import { mapClinics, mapImages } from "@/lib";
+import { mapServices } from "@/lib/map-services";
 
 export default function Clinics() {
   const [activeId, setActiveId] = useState<string>();
   const [clinicsData, setClinicsData] = useState<any>();
+  const [servicesData, setServicesData] = useState<any>();
   const [hydrated, setHydrated] = useState<boolean>(false);
+
+  console.log(servicesData);
+  
+  console.log(mapServices(servicesData));
+  
 
   function handleActiveChange(activeItem: any) {
     setActiveId(activeItem);
@@ -19,8 +26,14 @@ export default function Clinics() {
     setClinicsData(res);
   }
 
+  async function getAllServices(): Promise<void> {
+    const res = await Api.getServices();
+    setServicesData(res);
+  }
+
   useEffect(() => {
     getAllClinics();
+    getAllServices();
   }, []);
 
   useEffect(() => {

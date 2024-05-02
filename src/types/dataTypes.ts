@@ -1,10 +1,22 @@
-export interface Service {
-  id: number;
+export interface ServiceAttributes {
   name: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  top: any;
+  top: boolean | null;
+  parent: any;
+}
+
+export interface ServiceData {
+  id: number;
+  attributes: ServiceAttributes;
+  parent: {
+    data: ServiceData[];
+  };
+}
+
+export interface ServiceResponse {
+  data: ServiceData[];
 }
 
 export interface ImageFormat {
@@ -61,7 +73,7 @@ export interface DataAttributes {
   updatedAt: string;
   publishedAt: string;
   image: ImageResponse;
-  services: { data: Service[] };
+  services: ServiceResponse;
 }
 
 export interface MappedImages {

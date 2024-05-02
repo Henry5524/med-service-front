@@ -1,43 +1,46 @@
-import Carousel from "@/components/Carousel";
-import { mapOneClinic } from "@/lib";
-import { mapImages } from "@/lib/map-images";
-import { Api } from "@/services";
-import { sanitizeHtml } from "@/utils/sanitizer";
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Carousel from "@/components/Carousel";
+import { Api } from "@/services";
+import { MappedServices, mapImages, mapOneClinic, mapServices } from "@/lib";
+import { sanitizeHtml } from "@/utils/sanitizer";
+import {
+  Accordion,
+  AccordionItem,
+  Listbox,
+  ListboxItem,
+} from "@nextui-org/react";
 
 export default function ClinicPage() {
-  const [clinicData, setClinicData] = useState<any>();
+  const [clinic, setClinic] = useState<any>();
+  const [services, setServices] = useState<MappedServices[]>([]);
   const router = useRouter();
   const clinicId = router.query.clinics as string | string[] | undefined;
 
-  const clinic = clinicData && mapOneClinic(clinicData);
-
-  async function getTickets(): Promise<void> {
+  async function fetchData(): Promise<void> {
     if (typeof clinicId === "string") {
-      const res = await Api.getClinicById(clinicId);
-      setClinicData(res);
+      const clinicRes = await Api.getClinicById(clinicId);
+      setClinic(mapOneClinic(clinicRes));
+      const servicesRes = await Api.getServices();
+      setServices(mapServices(servicesRes));
     }
   }
 
   useEffect(() => {
-    getTickets();
+    fetchData();
   }, [clinicId]);
 
   return (
     <div>
-      {clinicData && (
+      {clinic && (
         <div>
           <h1 className="text-black text-4xl font-bold tracking-normal text-left mb-8">
             {clinic.name}
           </h1>
           <div className="mb-8 lg:flex gap-8">
             <div className="mb-8">
-              {clinicData?.data.attributes.image.data !== null ? (
-                <Carousel
-                  images={mapImages(clinicData?.data.attributes.image)}
-                />
+              {clinic.image.data !== null ? (
+                <Carousel images={mapImages(clinic.image)} />
               ) : (
                 <img
                   src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
@@ -55,35 +58,33 @@ export default function ClinicPage() {
             </div>
 
             <div className="flex-1 min-w-80">
-              <h4 className="text-xl font-bold tracking-normal text-center mb-4 text-gray-900">
+              <h4 className="text-xl font-bold tracking-normal uppercase text-center mb-4 text-gray-900">
                 МЕТОДЫ ЛЕЧЕНИЯ И ПРОЦЕДУРЫ : {clinic.name}
               </h4>
 
-              <div className="max-w-96 m-auto">
-                <Accordion variant="splitted" className="text-gray-900">
+              <Accordion variant="splitted" className="text-gray-900">
+                {mapServices(clinic.services).map((service) => (
                   <AccordionItem
-                    key="1"
-                    aria-label="Accordion 1"
-                    title="Accordion 1"
+                    key={service.id}
+                    aria-label={service.serviceName}
+                    title={service.serviceName}
                   >
-                    fasdsdaffdsafdsa
+                    <Listbox aria-label="Actions">
+                      {services
+                        ?.filter(
+                          (child: any) =>
+                            child.parent[0]?.id === service.id &&
+                            child.id !== service.id,
+                        )
+                        .map((child) => (
+                          <ListboxItem key={child.id}>
+                            {child.serviceName}
+                          </ListboxItem>
+                        ))}
+                    </Listbox>
                   </AccordionItem>
-                  <AccordionItem
-                    key="2"
-                    aria-label="Accordion 2"
-                    title="Accordion 2"
-                  >
-                    fasdsdaf
-                  </AccordionItem>
-                  <AccordionItem
-                    key="3"
-                    aria-label="Accordion 3"
-                    title="Accordion 3"
-                  >
-                    fasdsdaf
-                  </AccordionItem>
-                </Accordion>
-              </div>
+                ))}
+              </Accordion>
             </div>
           </div>
         </div>
