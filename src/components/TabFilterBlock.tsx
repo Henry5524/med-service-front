@@ -1,26 +1,18 @@
-import { useEffect } from "react";
+import { MappedServices } from "@/lib";
 
 export interface TabFilterBlockProps {
-  activeId?: string;
-  setActiveId: (activeId: string) => void;
-  selectedId?: string;
-  postsData?: any;
+  activeId?: string | number;
+  setActiveId: (activeId: string | number) => void;
+  tabsData?: MappedServices[];
   onSelectionChange?: any;
 }
 
 export default function TabFilterBlock({
   activeId,
   setActiveId,
-  selectedId,
-  postsData,
+  tabsData,
   onSelectionChange,
 }: TabFilterBlockProps) {
-  useEffect(() => {
-    if (selectedId === undefined && postsData?.length) {
-      setActiveId(postsData[0]?.id);
-    }
-  }, [postsData, selectedId]);
-
   return (
     <div
       className={
@@ -31,26 +23,33 @@ export default function TabFilterBlock({
         КЛИНИК ПО ДАННОМУ НАПРАВЛЕНИЮ
       </h1>
 
-      {postsData?.map((item: any) => (
+      <div
+        className={`${
+          activeId === "all" ? " font-extrabold" : "font-normal "
+        } flex items-center text-base leading-6 text-gray-900 mb-4 cursor-pointer`}
+        onClick={() => setActiveId("all")}
+      >
+        Все направления
+      </div>
+
+      {tabsData?.map((item: any) => (
         <div
           key={item.id}
-          onClick={() => {
-            onSelectionChange(item.id);
-          }}
+          onClick={() => onSelectionChange(item.id, item.parent[0].id)}
         >
           <div
             className={`${
               activeId === item.id ? " font-extrabold" : "font-normal "
             } flex items-center text-base leading-6 text-gray-900 mb-4 cursor-pointer`}
           >
-            {item.name}
-            <span
+            {item.serviceName}
+            {/* <span
               className={`${
                 activeId === item.id ? " font-extrabold" : "font-normal "
               } text-gray-900 ml-2`}
             >
-              ({item.number})
-            </span>
+              ({number})
+            </span> */}
           </div>
         </div>
       ))}

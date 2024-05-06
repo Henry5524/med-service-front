@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Carousel from "@/components/Carousel";
 import { Api } from "@/services";
-import { MappedServices, mapImages, mapOneClinic, mapServices } from "@/lib";
+import {
+  MappedClinics,
+  MappedServices,
+  mapOneClinic,
+  mapServices,
+} from "@/lib";
 import { sanitizeHtml } from "@/utils/sanitizer";
 import {
   Accordion,
@@ -10,18 +14,19 @@ import {
   Listbox,
   ListboxItem,
 } from "@nextui-org/react";
+import Carousel from "@/components/Carousel";
 
 export default function ClinicPage() {
-  const [clinic, setClinic] = useState<any>();
-  const [services, setServices] = useState<MappedServices[]>([]);
   const router = useRouter();
+  const [clinic, setClinic] = useState<MappedClinics | any>();
+  const [services, setServices] = useState<MappedServices[]>([]);
   const clinicId = router.query.clinics as string | string[] | undefined;
 
   async function fetchData(): Promise<void> {
     if (typeof clinicId === "string") {
       const clinicRes = await Api.getClinicById(clinicId);
-      setClinic(mapOneClinic(clinicRes));
       const servicesRes = await Api.getServices();
+      setClinic(mapOneClinic(clinicRes));
       setServices(mapServices(servicesRes));
     }
   }
@@ -39,8 +44,8 @@ export default function ClinicPage() {
           </h1>
           <div className="mb-8 lg:flex gap-8">
             <div className="mb-8">
-              {clinic.image.data !== null ? (
-                <Carousel images={mapImages(clinic.image)} />
+              {clinic.image !== undefined ? (
+                <Carousel images={clinic.image} />
               ) : (
                 <img
                   src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
@@ -63,7 +68,7 @@ export default function ClinicPage() {
               </h4>
 
               <Accordion variant="splitted" className="text-gray-900">
-                {mapServices(clinic.services).map((service) => (
+                {clinic.services.map((service: MappedServices) => (
                   <AccordionItem
                     key={service.id}
                     aria-label={service.serviceName}
@@ -72,7 +77,7 @@ export default function ClinicPage() {
                     <Listbox aria-label="Actions">
                       {services
                         ?.filter(
-                          (child: any) =>
+                          (child: MappedServices) =>
                             child.parent[0]?.id === service.id &&
                             child.id !== service.id,
                         )

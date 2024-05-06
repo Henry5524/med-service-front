@@ -10,26 +10,25 @@ export default function About() {
       <div className="flex flex-col gap-4 bg-white p-6 rounded-lg mb-4">
         <div>
           <h1 className="text-gray-900 text-4xl font-bold mb-4">
-            World-class clinical care, teaching and research
+            Клиническая помощь, преподавание и исследования мирового уровня
           </h1>
           <h3 className="text-gray-900 text-xl font-medium mb-2">
-            MQ Health is Australia's first fully integrated academic health
-            sciences centre.
+            MQ Health — первая в Австралии полностью интегрированная
+            академическая медицинская организация. научный центр.
           </h3>
           <p className="text-gray-900 text-normal font-normal mb-2">
-            We combine excellence in clinical care with teaching and research to
-            enhance patient outcomes and improve lives. Researchers also benefit
-            from our unique model because they can see the immediate effects of
-            their research on patients.
+            Мы сочетаем превосходство в клинической помощи с преподаванием и
+            исследованиями, чтобы улучшить результаты лечения пациентов и
+            улучшить жизнь. Исследователи также получают выгоду нашей уникальной
+            модели, потому что они могут видеть непосредственный эффект свои
+            исследования на пациентах.
           </p>
         </div>
 
         <Divider />
 
         <div>
-          <h1 className="text-gray-900 text-2xl font-semibold mb-4">
-            Who we are
-          </h1>
+          <h1 className="text-gray-900 text-2xl font-semibold mb-4">Кто мы</h1>
           {AboutListsData.map(({ title, description }: AboutListProps) => (
             <AboutList
               key={`${title} - ${description}`}
