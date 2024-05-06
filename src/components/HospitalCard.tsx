@@ -1,10 +1,9 @@
-import React from "react";
 import { Card, CardBody } from "@nextui-org/react";
 import { config } from "../config";
+import { MappedImages } from "@/lib";
 import { sanitizeHtml } from "@/utils/sanitizer";
-import truncateWithLink from "@/utils/truncateWithLink";
+import { truncateWithLink } from "@/utils/truncateWithLink";
 import { LocationIcon } from "@/assets/icons";
-import { MappedImages } from "@/types/dataTypes";
 
 export interface HospitalCardProps {
   id: number;

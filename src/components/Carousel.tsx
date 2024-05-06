@@ -1,14 +1,15 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/icons";
 import { Button, Image } from "@nextui-org/react";
 import { config } from "../config";
+import { MappedImages } from "@/lib";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
+import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/icons";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export default function Carousel({ images }: any) {
+export default function Carousel({ images }: { images: MappedImages[] }) {
   return (
     <ResponsiveCarousel
-      infiniteLoop={true}
-      autoPlay={true}
+      infiniteLoop
+      autoPlay
       showStatus={false}
       showThumbs={false}
       className="md:w-full lg:w-[768px] mb-8 drop-shadow-md"

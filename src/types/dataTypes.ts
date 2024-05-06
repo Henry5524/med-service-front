@@ -69,14 +69,10 @@ export interface ImageResponse {
 export interface DataAttributes {
   name: string;
   description: string;
+  address?: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   image: ImageResponse;
   services: ServiceResponse;
-}
-
-export interface MappedImages {
-  imageUrl: string;
-  name: string;
 }

@@ -1,25 +1,29 @@
-import { DataAttributes, ImageResponse, ServiceResponse } from "@/types/dataTypes";
+import { DataAttributes } from "@/types/dataTypes";
+import { MappedServices, mapServices } from "./map-services";
+import { MappedImages, mapImages } from "./map-images";
 
-interface InputData {
+export interface InputData {
   data: { id: number; attributes: DataAttributes }[];
 }
 
-interface OutputData {
+export interface MappedClinics {
   id: number;
   name: string;
   description: string;
-  services: ServiceResponse;
-  image: ImageResponse;
+  address?: string;
+  services: MappedServices[];
+  image: MappedImages[];
 }
 
-export const mapClinics = (inputData: InputData): OutputData[] => {
-  return inputData.data.map((item) => {
+export const mapClinics = (inputData: InputData | any): MappedClinics[] => {
+  return inputData.data.map((item: any) => {
     return ({
       id: item.id,
       name: item.attributes.name,
       description: item.attributes.description,
-      services: item.attributes.services,
-      image: item.attributes.image
+      address: item.attributes.address,
+      services: mapServices(item.attributes.services),
+      image: mapImages(item.attributes.image)
     })
   });
 };
