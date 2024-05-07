@@ -1,8 +1,3 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Clinics from "./clinics";
 
 // const inter = Inter({ subsets: ["latin"] });

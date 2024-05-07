@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import {
   Navbar as NavbarUi,
   NavbarBrand,
@@ -20,8 +19,6 @@ const menuItems = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
-  const active = menuItems.filter(({ path }) => router.pathname === path);
 
   return (
     <NavbarUi
