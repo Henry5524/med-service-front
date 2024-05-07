@@ -32,4 +32,9 @@ export class Api {
         );
     }
 
+    static getAboutPageData(): Promise<void> {
+        return handleRequest<void>(Api.axios.get('/about')
+        );
+    }
+
 }

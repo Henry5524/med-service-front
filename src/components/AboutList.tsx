@@ -1,7 +1,4 @@
-export interface AboutListProps {
-  title: string;
-  description: string;
-}
+import { AboutListProps } from "@/types/aboutTypes";
 
 export default function AboutList({ title, description }: AboutListProps) {
   return (

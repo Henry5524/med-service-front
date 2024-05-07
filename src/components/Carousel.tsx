@@ -43,9 +43,9 @@ export default function Carousel({ images }: { images: MappedImages[] }) {
       }
     >
       {images &&
-        images.map((image: any) => (
+        images.map((image: MappedImages) => (
           <Image
-            key={`${image.image}-${image.name}`}
+            key={`${image.imageUrl}-${image.name}`}
             alt={`${config.api_url_image}${image.name}`}
             className="object-cover aspect-[3/2]"
             width={"100%"}
