@@ -1,25 +1,29 @@
-import { FooterIcon } from "flowbite-react";
-
-export interface AboutCardProps {
-  icon: any;
-  title: string;
-  description: string;
-}
+import config from "@/config";
+import { mapOneImage } from "@/lib";
+import { AboutCardProps } from "@/types/aboutTypes";
 
 export default function AboutCard({
-  icon,
+  icon: image,
   title,
-  description,
+  subTitle,
 }: AboutCardProps) {
+  const { imageUrl, name } = mapOneImage(image);
+
   return (
     <div className="w-56 bg-white flex flex-col items-center p-4 mb-4 rounded-lg m-auto">
-      <FooterIcon icon={icon} />
+      {imageUrl && (
+        <img
+          src={`${config.api_url_image}${imageUrl}`}
+          alt={name}
+          className="w-20 h-20 object-cover rounded-lg"
+        />
+      )}
 
       <h4 className="text-center text-gray-900 text-lg font-semibold my-2">
         {title}
       </h4>
       <p className="text-center text-gray-900 text-base font-normal">
-        {description}
+        {subTitle}
       </p>
     </div>
   );

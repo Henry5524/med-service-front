@@ -6,21 +6,32 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { columns, data } from "@/helpers/AboutTableData";
+import { AboutTableProps } from "@/types/aboutTypes";
 
-export default function AboutTable() {
+export const columns = [
+  { name: "Ценность", id: "value" },
+  { name: "Поведение", id: "behavior" },
+];
+
+export default function AboutTable({ data }: { data: AboutTableProps[] }) {
   return (
-    <Table isStriped shadow="none" aria-label="About table with values">
-      <TableHeader columns={columns}>
-        {(column) => <TableColumn key={column.uid}>{column.name}</TableColumn>}
-      </TableHeader>
-      <TableBody items={data}>
-        {(item: any) => (
-          <TableRow key={`${item.value}-${item.behavior}`}>
-            {(columnKey: any) => <TableCell>{item[columnKey]}</TableCell>}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+    <>
+      {data && (
+        <Table isStriped shadow="none" aria-label="About table with values">
+          <TableHeader columns={columns}>
+            {(column) => (
+              <TableColumn key={column.id}>{column.name}</TableColumn>
+            )}
+          </TableHeader>
+          <TableBody items={data}>
+            {(item: any) => (
+              <TableRow key={`${item.id}-${item.value}`}>
+                {(columnKey: any) => <TableCell>{item[columnKey]}</TableCell>}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      )}
+    </>
   );
 }
