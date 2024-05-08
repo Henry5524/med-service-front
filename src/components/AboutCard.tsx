@@ -1,4 +1,3 @@
-import config from "@/config";
 import { mapOneImage } from "@/lib";
 import { AboutCardProps } from "@/types/aboutTypes";
 
@@ -13,7 +12,7 @@ export default function AboutCard({
     <div className="w-56 bg-white flex flex-col items-center p-4 mb-4 rounded-lg m-auto">
       {imageUrl && (
         <img
-          src={`${config.api_url_image}${imageUrl}`}
+          src={imageUrl}
           alt={name}
           className="w-20 h-20 object-cover rounded-lg"
         />
