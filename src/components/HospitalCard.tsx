@@ -1,5 +1,4 @@
 import { Card, CardBody } from "@nextui-org/react";
-import { config } from "../config";
 import { MappedImages } from "@/lib";
 import { sanitizeHtml } from "@/utils/sanitizer";
 import { truncateWithLink } from "@/utils/truncateWithLink";
@@ -31,9 +30,9 @@ export default function HospitalCard({
           <div className="custom-image-container">
             {imgSrc ? (
               <img
-                src={`${config.api_url_image}${imgSrc[0].imageUrl}`}
+                src={imgSrc[0].imageUrl}
                 className="custom-image"
-                alt={`${config.api_url_image}${imgSrc[0].name}`}
+                alt={imgSrc[0].name}
               />
             ) : (
               <img

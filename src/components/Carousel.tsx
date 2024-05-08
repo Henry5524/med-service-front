@@ -1,5 +1,4 @@
 import { Button, Image } from "@nextui-org/react";
-import { config } from "../config";
 import { MappedImages } from "@/lib";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/assets/icons";
@@ -46,10 +45,10 @@ export default function Carousel({ images }: { images: MappedImages[] }) {
         images.map((image: MappedImages) => (
           <Image
             key={`${image.imageUrl}-${image.name}`}
-            alt={`${config.api_url_image}${image.name}`}
+            alt={image.name}
             className="object-cover aspect-[3/2]"
             width={"100%"}
-            src={`${config.api_url_image}${image.imageUrl}`}
+            src={image.imageUrl}
           />
         ))}
     </ResponsiveCarousel>
