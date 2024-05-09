@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { Card, CardBody } from "@nextui-org/react";
 import { MappedImages } from "@/lib";
 import { sanitizeHtml } from "@/utils/sanitizer";
@@ -19,6 +20,7 @@ export default function HospitalCard({
   description,
   imgSrc,
 }: HospitalCardProps) {
+  const router = useRouter();
   return (
     <Card
       isBlurred
@@ -26,7 +28,10 @@ export default function HospitalCard({
       shadow="sm"
     >
       <CardBody>
-        <div className="flex gap-4 flex-col items-center xs:flex-row ">
+        <div
+          className="flex gap-4 flex-col items-center xs:flex-row cursor-pointer"
+          onClick={() => router.push(`/clinics/${id}`)}
+        >
           <div className="custom-image-container">
             {imgSrc ? (
               <img
@@ -44,12 +49,18 @@ export default function HospitalCard({
           </div>
 
           <div className="flex flex-col gap-2 flex-1">
-            <h2 className="text-sm lg:text-xl font-medium text-gray-900">
+            <h2
+              onClick={(e) => e.stopPropagation()}
+              className="text-sm lg:text-xl font-medium text-gray-900 cursor-auto max-w-48"
+            >
               {name}
             </h2>
-            <span className="flex gap-1 items-center">
+            <span
+              onClick={(e) => e.stopPropagation()}
+              className="flex gap-1 items-center cursor-auto"
+            >
               <LocationIcon />
-              <p className="text-xs lg:text-sm text-gray-500 font-light mt-[2px]">
+              <p className="text-xs lg:text-sm text-gray-500 font-light mt-[2px] cursor-auto">
                 {address}
               </p>
             </span>
@@ -60,7 +71,8 @@ export default function HospitalCard({
                   truncateWithLink(description, 20, `/clinics/${id}`),
                 ),
               }}
-              className="text-xs lg:text-base text-gray-800 font-normal"
+              onClick={(e) => e.stopPropagation()}
+              className="text-xs lg:text-base text-gray-800 font-normal cursor-auto"
             />
           </div>
         </div>

@@ -26,13 +26,14 @@ export default function index() {
 
   return (
     <div className="lg:flex items-center gap-32 mt-12 mb-12 bg-white p-8 rounded-xl w-full">
-      <div className="w-96 flex flex-col">
+      <div className="lg:w-96 flex flex-col">
         <h1 className="text-gray-900 text-4xl not-italic font-bold m-0 mb-5">
-          Let’s Talk
+          Давай поговорим
         </h1>
         <p className="text-gray-600 text-xl not-italic font-normal m-0 mb-12">
-          Have some big idea or brand to develop and need help? Then reach out
-          we'd love to hear about your project and provide help
+          У вас есть какая-то большая идея или бренд, который нужно развивать, и
+          вам нужна помощь? Тогда обратитесь мы будем рады услышать о вашем
+          проекте и оказать помощь
         </p>
 
         {ContactInfo.map((i: any) => (
@@ -56,9 +57,9 @@ export default function index() {
         ))}
       </div>
 
-      <div className={"w-96 flex flex-col items-start"}>
-        <form className={"w-96 flex flex-col"}>
-          <label className="custom-label">Name</label>
+      <div className={"lg:w-96 flex flex-col items-start"}>
+        <form className={"w-full flex flex-col"}>
+          <label className="custom-label">Имя</label>
           <input
             id="name"
             name="name"
@@ -68,7 +69,7 @@ export default function index() {
             value={formik.values.name}
           />
 
-          <label className="custom-label">Mail</label>
+          <label className="custom-label">Почта</label>
           <input
             id="email"
             name="email"
@@ -78,7 +79,7 @@ export default function index() {
             value={formik.values.email}
           />
 
-          <label className="custom-label">Phone</label>
+          <label className="custom-label">Телефон</label>
           <input
             id="phone"
             name="phone"
@@ -88,7 +89,7 @@ export default function index() {
             value={formik.values.phone}
           />
 
-          <label className="custom-label">Message</label>
+          <label className="custom-label">Сообщение</label>
           <textarea
             id="message"
             name="message"
@@ -105,7 +106,7 @@ export default function index() {
           type="submit"
           onClick={() => formik.handleSubmit()}
         >
-          Send
+          Отправлять
         </button>
       </div>
     </div>
