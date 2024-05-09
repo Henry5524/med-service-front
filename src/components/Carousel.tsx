@@ -7,8 +7,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function Carousel({ images }: { images: MappedImages[] }) {
   return (
     <ResponsiveCarousel
-      infiniteLoop
-      autoPlay
       showStatus={false}
       showThumbs={false}
       className="md:w-full lg:w-[768px] mb-8 drop-shadow-md"

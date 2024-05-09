@@ -3,17 +3,17 @@ import { FacebookIcon, InstagramIcon, TelegramIcon, TwitterIcon } from "@/assets
 export const ContactInfo = [
   {
     id: '1',
-    name: 'Email',
-    value: 'vW1fQ@example.com',
+    name: 'Почта',
+    value: 'medserviceQ@example.com',
   },
   {
     id: '2',
-    name: 'Phone',
-    value: '+123456243',
+    name: 'Телефон',
+    value: '+123456789',
   },
   {
     id: '3',
-    name: 'Social',
+    name: 'Социальное',
     links: [
       {
         name: 'Facebook',

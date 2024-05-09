@@ -10,38 +10,36 @@ export type FooterTabProps = {
 
 export const FooterTabs: FooterTabProps[] = [
   {
-    title: "Company",
+    title: "Компания",
     items: [
-      { name: "About", href: "#" },
-      { name: "Careers", href: "#" },
-      { name: "Brand Center", href: "#" },
-      { name: "Blog", href: "#" },
+      { name: "О нас", href: "#" },
+      { name: "Карьера", href: "#" },
+      { name: "Связаться с нами", href: "#" },
+      { name: "Блог", href: "#" },
     ],
   },
   {
-    title: "Help center",
+    title: "Социальное",
     items: [
-      { name: "Discord Server", href: "#" },
-      { name: "Twitter", href: "#" },
-      { name: "Facebook", href: "#" },
-      { name: "Contact us", href: "#" },
+      { name: "Инстаграм", href: "#" },
+      { name: "Твиттер", href: "#" },
+      { name: "Мета", href: "#" },
+      { name: "Телеграм", href: "#" },
     ],
   },
   {
-    title: "Legal",
+    title: "Центр помощи",
     items: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Licensing", href: "#" },
-      { name: "Terms & Conditions", href: "#" },
+      { name: "Политика конфиденциальности", href: "#" },
+      { name: "Лицензирование", href: "#" },
+      { name: "Условия & Использования", href: "#" },
     ],
   },
   {
-    title: "Download",
+    title: "Скачать",
     items: [
       { name: "IOS", href: "#" },
       { name: "Android", href: "#" },
-      { name: "Windows", href: "#" },
-      { name: "MacOS", href: "#" },
     ],
   },
 ];

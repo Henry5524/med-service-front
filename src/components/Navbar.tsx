@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Navbar as NavbarUi,
   NavbarBrand,
@@ -10,15 +10,24 @@ import {
   Link,
 } from "@nextui-org/react";
 import { AcmeLogo } from "../assets/icons/AcmeLogo";
+import { useRouter } from "next/router";
 
 const menuItems = [
-  { id: 1, name: "Home", path: "/" },
-  { id: 2, name: "About", path: "/about" },
-  { id: 3, name: "Contact us", path: "/contact-us" },
+  { id: 1, name: "Главное", path: "/" },
+  { id: 2, name: "О нас", path: "/about" },
+  { id: 3, name: "Связаться с нами", path: "/contact-us" },
 ];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [active, setActive] = useState("");
+  const router = useRouter();
+
+  console.log(active);
+
+  useEffect(() => {
+    setActive(router.pathname);
+  }, [router.pathname]);
 
   return (
     <NavbarUi
@@ -34,20 +43,26 @@ export default function Navbar() {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
-        <NavbarBrand>
+        <NavbarBrand
+          className="cursor-pointer"
+          onClick={() => router.push("/")}
+        >
           <AcmeLogo />
           <p className="font-bold text-inherit">Med Service</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-12">
-        <NavbarBrand>
+        <NavbarBrand
+          className="cursor-pointer"
+          onClick={() => router.push("/")}
+        >
           <AcmeLogo />
           <p className="font-bold text-inherit">Med Service</p>
         </NavbarBrand>
 
         {menuItems.map(({ id, name, path }) => (
-          <NavbarItem key={`${id}-${name}`}>
+          <NavbarItem key={`${id}-${name}`} isActive={active == path}>
             <Link color="foreground" href={`${path}`}>
               {name}
             </Link>
@@ -57,7 +72,7 @@ export default function Navbar() {
 
       <NavbarMenu>
         {menuItems.map(({ id, name, path }) => (
-          <NavbarMenuItem key={`${id}-${name}`}>
+          <NavbarMenuItem key={`${id}-${name}`} isActive={active == path}>
             <Link
               className="w-full"
               color="foreground"
